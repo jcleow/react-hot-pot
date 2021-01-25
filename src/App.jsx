@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import NewBillForm from './components/NewBillForm.jsx';
 import NewItemInputForm from './components/NewItemInputForm.jsx';
-import ItemsList from './components/ItemsList.jsx';
+import ItemPayable from './components/ItemPayable.jsx';
+import PayersList from './components/PayersList.jsx';
 
 export default function App() {
   // To track whether to display main screen or not
@@ -14,6 +15,9 @@ export default function App() {
   // To track all relevant names and items in this current bill form
   const [listOfPeople, setListOfPeople] = useState(['Person Drop Down']);
   const [listOfItems, setListOfItems] = useState([]);
+
+  // To track all the items and amt payables for each person
+  const [consolidatedPayers, setConsolidatedPayers] = useState([]);
 
   const itemInputFormProps = {
     priceInput,
@@ -28,32 +32,48 @@ export default function App() {
     setListOfItems,
   };
 
-  return (
+  const consolidatedPayersProps = {
+    consolidatedPayers,
+    setConsolidatedPayers,
+  };
+
+  const itemsListDisplay = listOfItems.map((item) => (
     <div className="container">
       <div className="row">
         <div className="col d-flex justify-content-center">
+          <ItemPayable
+            listOfPeople={listOfPeople}
+            item={item}
+            consolidatedPayersProps={consolidatedPayersProps}
+          />
+        </div>
+      </div>
+    </div>
+  ));
 
-          {!displayMainAppScreen
+  return (
+    <div>
+      <div className="container">
+        <div className="row">
+          <div className="col d-flex justify-content-center">
+            {!displayMainAppScreen
           && (
           <NewBillForm
             setDisplayMainAppScreen={setDisplayMainAppScreen}
           />
           )}
-
-          {displayMainAppScreen
+            {displayMainAppScreen
           && <NewItemInputForm itemInputFormProps={itemInputFormProps} />}
+          </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col d-flex justify-content-center">
-          {displayMainAppScreen
-        && (
-        <ItemsList
-          listOfPeople={listOfPeople}
-          listOfItems={listOfItems}
-          priceInput={priceInput}
-        />
-        )}
+      {itemsListDisplay}
+      <div className="container">
+        <div className="row">
+          <div className="col d-flex justify-content-center">
+            {displayMainAppScreen
+            && <PayersList consolidatedPayers={consolidatedPayers} />}
+          </div>
         </div>
       </div>
     </div>

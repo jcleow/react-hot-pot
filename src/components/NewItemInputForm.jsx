@@ -62,12 +62,24 @@ export default function NewItemInputForm({ itemInputFormProps }) {
   const itemInputProps = { itemInput, priceInput, handleNewItemInput };
 
   return (
-    <div>
-      <ItemInput props={itemInputProps} />
-      <PriceInput props={priceInputProps} />
-      <SubmitItemBtn handleAddItemToBill={handleAddItemToList} />
-      <PersonInput props={personInputProps} />
-      <SubmitPersonBtn handleAddPersonToBill={handleAddPersonToBill} />
+    <div className="container">
+      <div className="row">
+        <div className="col text-center">
+          <ItemInput props={itemInputProps} />
+          <PriceInput props={priceInputProps} />
+        </div>
+        <div className="col d-flex justify-content-center">
+          <SubmitItemBtn handleAddItemToBill={handleAddItemToList} />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col d-flex justify-content-center">
+          <PersonInput props={personInputProps} />
+        </div>
+        <div className="col d-flex justify-content-center">
+          <SubmitPersonBtn handleAddPersonToBill={handleAddPersonToBill} />
+        </div>
+      </div>
     </div>
   );
 }

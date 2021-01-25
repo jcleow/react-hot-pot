@@ -1,6 +1,7 @@
+import axios from 'axios';
+
 export default function bills(db) {
   const index = () => {
-
   };
 
   const create = async (req, res) => {

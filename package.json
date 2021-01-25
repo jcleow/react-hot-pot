@@ -51,10 +51,17 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "iexcloud_api_wrapper": "^1.1.5",
     "method-override": "^3.0.0",
+    "node-fetch": "^2.6.1",
+    "node-iex-cloud": "^2.0.31",
+    "path": "^0.12.7",
+    "path-browserify": "^1.0.1",
     "pg": "^8.5.1",
-    "sequelize": "^6.4.0"
+    "sequelize": "^6.4.0",
+    "webpack-node-externals": "^2.5.2"
   }
 }
